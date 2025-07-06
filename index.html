@@ -1,13 +1,217 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Cweper NL</title>
+  <style>
+    /* Reset */
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background: #121212;
+      color: #eee;
+      scroll-behavior: smooth;
+      line-height: 1.6;
+    }
+
+    header {
+      background: #1f1f1f;
+      position: fixed;
+      width: 100%;
+      top: 0;
+      left: 0;
+      z-index: 100;
+      box-shadow: 0 2px 5px rgba(0, 0, 0, 0.7);
+    }
+
+    nav {
+      max-width: 900px;
+      margin: 0 auto;
+      display: flex;
+      justify-content: center;
+      padding: 1rem 0;
+    }
+
+    nav a {
+      color: #eee;
+      text-decoration: none;
+      margin: 0 1.5rem;
+      font-weight: 600;
+      font-size: 1.1rem;
+      transition: color 0.3s ease;
+    }
+
+    nav a:hover {
+      color: #4ade80;
+    }
+
+    main.container {
+      max-width: 900px;
+      margin: 6rem auto 4rem auto; /* account for fixed header */
+      background: #222;
+      border-radius: 10px;
+      box-shadow: 0 0 15px rgba(0, 0, 0, 0.6);
+      padding: 2rem 3rem;
+      display: flex;
+      flex-direction: column;
+      gap: 3rem;
+      color: #ccc;
+    }
+
+    main.container > div {
+      opacity: 0;
+      transform: translateY(40px);
+      transition: opacity 1s ease-out, transform 1s ease-out;
+      border-bottom: 1px solid #333;
+      padding-bottom: 1.5rem;
+    }
+
+    main.container > div:last-child {
+      border-bottom: none;
+      padding-bottom: 0;
+    }
+
+    main.container > div.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    h1, h2 {
+      margin-bottom: 1rem;
+      color: #4ade80;
+    }
+
+    p {
+      margin-bottom: 1rem;
+    }
+
+    .download-btn {
+      display: inline-block;
+      background: #4ade80;
+      color: #121212;
+      padding: 0.75rem 1.75rem;
+      font-weight: 700;
+      font-size: 1.2rem;
+      border-radius: 8px;
+      box-shadow: 0 4px 6px rgba(74, 222, 128, 0.5);
+      text-decoration: none;
+      transition: background 0.3s ease;
+    }
+
+    .download-btn:hover {
+      background: #22c55e;
+      box-shadow: 0 6px 10px rgba(34, 197, 94, 0.7);
+    }
+
+    .news-list {
+      list-style: inside disc;
+      color: #ddd;
+    }
+
+    .news-list li {
+      margin-bottom: 0.75rem;
+    }
+
+    .major-announcement {
+      background: #16a34a;
+      color: white;
+      padding: 1rem 1.5rem;
+      border-radius: 8px;
+      margin-bottom: 1.5rem;
+      font-weight: 700;
+      font-size: 1.2rem;
+      box-shadow: 0 4px 10px rgba(22,163,74,0.7);
+    }
+
+    footer {
+      text-align: center;
+      padding: 1rem 0;
+      color: #555;
+      font-size: 0.9rem;
+      margin-top: 3rem;
+    }
+
+    @media (max-width: 600px) {
+      nav a {
+        margin: 0 0.75rem;
+        font-size: 1rem;
+      }
+
+      main.container {
+        margin: 5rem 1rem 3rem 1rem;
+        padding: 1.5rem;
+      }
+    }
+  </style>
 </head>
 <body>
-    Cweper NL Update Server
 
-    Ready ✔
+<header>
+  <nav>
+    <a href="#news">News</a>
+    <a href="#title">Home</a>
+    <a href="#download">Download</a>
+  </nav>
+</header>
+
+<main class="container">
+
+  <div id="news" class="fade-section">
+    <h2>Latest News</h2>
+    <div class="major-announcement" role="alert" aria-live="assertive">
+      🚀 Major Update: Cweper NL is now fully 3D! Explore and survive in a whole new dimension. 🚀
+    </div>
+    <ul class="news-list">
+      <li><strong>July 6, 2025:</strong> Cweper NL is made 3D</li>
+      <li><strong>July 6, 2025:</strong> Official Servers updated</li>
+      <li><strong>July 6, 2025:</strong> 3D Cweper NL is released</li>
+    </ul>
+  </div>
+
+  <div id="title" class="fade-section">
+    <h1>Welcome to Cweper NL</h1>
+    <p>
+      Cweper NL is a multiplayer survival experience where players can explore, build, and thrive together. Now in full 3D, the game offers a whole new level of immersion and creativity.
+    </p>
+  </div>
+
+  <div id="download" class="fade-section">
+    <h2>Download</h2>
+    <p>Get the latest version of Cweper NL here:</p>
+    <a class="download-btn" href="https://drive.proton.me/urls/DWR8JXRF24#PvhvVTswFm0n">
+      Download Now
+    </a>
+  </div>
+
+</main>
+
+<footer>
+  &copy; 2025 Cweper NL. All rights reserved.
+</footer>
+
+<script>
+  // Fade-in on scroll
+  const sections = document.querySelectorAll('.fade-section');
+
+  const observer = new IntersectionObserver((entries, obs) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('visible');
+        obs.unobserve(entry.target);
+      }
+    });
+  }, {
+    threshold: 0.15
+  });
+
+  sections.forEach(section => observer.observe(section));
+</script>
+
 </body>
 </html>
